@@ -29,7 +29,7 @@ services:
 
   # --- Capa de aplicación: Flask servido con Gunicorn ---
   app:
-    build: ./app
+    image: invhospitalprofe/inventario-app:1.0
     restart: unless-stopped
     environment:
       DB_HOST: db
