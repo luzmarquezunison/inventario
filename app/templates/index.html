@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="tarjeta">
+  <div class="barra">
+    <h2 style="margin:0">Equipos registrados ({{ equipos|length }})</h2>
+    <a class="btn" href="{{ url_for('nuevo') }}">+ Registrar equipo</a>
+  </div>
+  <div class="tabla-scroll">
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Nombre</th><th>Tipo</th><th>Marca</th><th>N.º de serie</th><th>Ubicación</th><th>Estado</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+    {% for e in equipos %}
+      <tr>
+        <td>{{ e.id }}</td>
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.tipo }}</td>
+        <td>{{ e.marca }}</td>
+        <td>{{ e.numero_serie }}</td>
+        <td>{{ e.ubicacion }}</td>
+        <td><span class="estado {{ e.estado.split(' ')[0] }}">{{ e.estado }}</span></td>
+        <td class="acciones">
+          <a class="btn chico sec" href="{{ url_for('editar', id_equipo=e.id) }}">Editar</a>
+          <form method="post" action="{{ url_for('eliminar', id_equipo=e.id) }}">
+            <button class="btn chico peligro" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8">No hay equipos registrados.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

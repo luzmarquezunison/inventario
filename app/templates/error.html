@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="tarjeta">
+  <h2 style="margin-top:0;color:#b91c1c">No hay conexión con la base de datos</h2>
+  <p>La aplicación está funcionando, pero no puede comunicarse con el servicio <code>{{ db_host }}</code>.</p>
+  <p>Revisa el estado de los servicios con <code>docker compose ps</code> y los registros con <code>docker compose logs db</code>.</p>
+  <p style="color:#6b7280;font-size:.9rem">Detalle técnico: {{ detalle }}</p>
+</div>
+{% endblock %}

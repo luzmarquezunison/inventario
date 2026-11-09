@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="tarjeta" style="max-width:600px;margin:auto">
+  <h2 style="margin-top:0">{{ titulo }}</h2>
+  <form method="post">
+    <div class="campo">
+      <label for="nombre">Nombre del equipo</label>
+      <input id="nombre" name="nombre" maxlength="100" value="{{ equipo.nombre or '' }}" required>
+    </div>
+    <div class="campo">
+      <label for="tipo">Tipo</label>
+      <select id="tipo" name="tipo" required>
+        {% for t in tipos %}<option {% if equipo.tipo == t %}selected{% endif %}>{{ t }}</option>{% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="marca">Marca</label>
+      <input id="marca" name="marca" maxlength="50" value="{{ equipo.marca or '' }}" required>
+    </div>
+    <div class="campo">
+      <label for="numero_serie">Número de serie</label>
+      <input id="numero_serie" name="numero_serie" maxlength="50" value="{{ equipo.numero_serie or '' }}" required>
+    </div>
+    <div class="campo">
+      <label for="ubicacion">Ubicación</label>
+      <input id="ubicacion" name="ubicacion" maxlength="100" value="{{ equipo.ubicacion or '' }}" required>
+    </div>
+    <div class="campo">
+      <label for="estado">Estado</label>
+      <select id="estado" name="estado" required>
+        {% for s in estados %}<option {% if equipo.estado == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+      </select>
+    </div>
+    <button class="btn" type="submit">Guardar</button>
+    <a class="btn sec" href="{{ url_for('inicio') }}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
